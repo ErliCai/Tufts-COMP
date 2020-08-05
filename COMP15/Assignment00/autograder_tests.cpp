@@ -4,13 +4,17 @@
 #include<map>
 #include<stdexcept>
 #include "ArrayList.hpp"
-
 /*
  * using name assert for convenience - this is not the same as cassert's assert.
  * this function throws a logic error if the assertion is false.
  */
+
+// Out of mysterious reason, this file does not work with my compiler(Xcode)
+// So I create another file named "Tests.cpp" to test the functionality of ArrayList.cpp
+
+
 void assert(bool test){
-  if (!test) throw std::logic_error("assertion failed");
+  if ( !test ) throw std::logic_error("assertion failed");
 }
 
 /*
