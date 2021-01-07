@@ -1,0 +1,162 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{epsfig}
+\usepackage{amsmath,amsthm}
+\usepackage{listings}
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries}{Question~\thesection:}{1em}{}
+
+\newlength{\toppush}
+\setlength{\toppush}{2\headheight}
+\addtolength{\toppush}{\headsep}
+
+
+\def\subjnum{Comp 170}
+\def\subjname{Computation Theory}
+
+
+\def\doheading#1#2#3{\vfill\eject\vspace*{-\toppush}%
+  \vbox{\hbox to\textwidth{{\bf} \subjnum: \subjname \hfil Erli Cai}%
+    \hbox to\textwidth{{\bf} Tufts University, Fall 2020 \hfil#3\strut}%
+    \hrule}}
+
+
+\newcommand{\htitle}[1]{\vspace*{1.25ex plus 1ex minus 0ex}%
+\begin{center}
+{\large\bf #1}
+\end{center}} 
+
+\setlength\parindent{0pt}
+
+\begin{document}
+\doheading{2}{title}{Homework 08}
+
+\section{Totally}
+a. Rice Theorem does not apply. \\
+Suppose we have have two Turing Machines $M_1, M_2$ with $M_1$ rejects all strings and $M_2$ loops on all strings, then $L(M_1) = L(M_2)$.\\
+$M_1$ will halt on all input, while $M_2$ does not halt on any input\\
+Thus this is not a property of language and Rice's theorem does not apply.\\
+
+b.\\
+First we show there exist function f from H to TOT,\\
+$f=$ ``on input $\langle M,x\rangle$:
+\begin{enumerate}
+    \item compute/construct a TM $\hat{M}$ such that $\langle M,x \rangle \in H \iff \langle \hat{M} \rangle \in TOT$:
+
+$\hat{M}=$`` on input $y$:
+\vspace*{-10pt}
+\begin{itemize}
+\item[1.] Ignore y for now
+\item[2.] Simulate $M$ on $x$; 
+\begin{enumerate}
+    \item[1.] If $M$ halts on $x$, $\hat{M}$ \emph{accepts} $y$;
+    \item[2.] If $M$ does not halt on $x$, send $\hat{M}$ into a loop state.''
+\end{enumerate}
+\end{itemize}
+\item Return $\langle \hat{M} \rangle$. ''
+\end{enumerate}
+
+We claim that M halts on x if and only if $\hat{M}$ halts on all input
+\begin{align*}
+\langle M,x \rangle \in H & \Rightarrow  M \textrm{ accepts $x$} & \langle M,x \rangle \not\in {\sf A}_{TM} & \Rightarrow  M \textrm{ does not accept $x$}\\ 
+& \Rightarrow  M \textrm{ halts on x } & & \Rightarrow  M \textrm{ does not halt on input $x$}\\
+& \Rightarrow  \hat{M} \textrm{ accepts all input y } & & \Rightarrow  \hat{M} \textrm{ loops on all input $y$}\\
+& \Rightarrow  \langle \hat{M}\rangle \in {\sf TOT}& & \Rightarrow \langle \hat{M} \rangle \not \in {\sf TOT}~.
+\end{align*}
+%\vspace*{-20pt}
+
+Thus, we have shown that $H \le_m TOT$.
+
+
+\pagebreak
+\section{Not Totally}
+
+$\overline{TOT} =  \{\langle M \rangle ~|~ M \textrm{ is a TM and } M \textrm{ doesn't halt on some inputs}\}.$   \\
+First we show there exist function f from H to $\overline{TOT}$,\\
+$f=$ ``on input $\langle M,x\rangle$:
+\begin{enumerate}
+    \item compute/construct a TM $\hat{M}$ such that $\langle M,x \rangle \in H \iff \langle \hat{M} \rangle \in \overline{TOT}$:
+
+$\hat{M}=$`` on input $y$:
+\vspace*{-10pt}
+\begin{itemize}
+\item[1.] Ignore y for now
+\item[2.] Simulate $M$ on $x$; 
+\begin{enumerate}
+    \item[1.] If $M$ halts on $x$, send $\hat{M}$ into a loop state;
+    \item[2.] If $M$ does not halt on $x$, $\hat{M}$ \emph{accepts} $y$.''
+\end{enumerate}
+\end{itemize}
+\item Return $\langle \hat{M}\rangle$. ''
+\end{enumerate}
+
+We claim that $\langle M, x\rangle \in H$ if and only if $\langle\hat{M}\rangle \in \overline{TOT}$
+\begin{align*}
+\langle M,x \rangle \in H & \Rightarrow  M \textrm{ accepts $x$} & \langle M,x \rangle \not\in {\sf A}_{TM} & \Rightarrow  M \textrm{ does not accept $x$}\\ 
+& \Rightarrow  M \textrm{ halts on x } & & \Rightarrow  {M} \textrm{ does not halt on x }\\
+& \Rightarrow  \hat{M} \textrm{ loop on all input y } & & \Rightarrow  \hat{M} \textrm{ accept all input $y$}\\
+& \Rightarrow  \langle \hat{M}\rangle \in {\sf \overline{TOT}}& & \Rightarrow \langle \hat{M} \rangle \not \in {\sf \overline{TOT}}~.
+\end{align*}
+%\vspace*{-20pt}
+
+Thus, we have shown that $H \le_m \overline{TOT}$.
+
+
+
+
+\pagebreak
+\section{Differences}
+
+a.  $A\setminus A'$ is decidable.\\
+Since $A, A'$ are decidable, there exists $M_1, M_2$ such that $L(M_1) = A, L(M_2) = A'$.\\
+Construct $M_3$ in the following way:\\
+$M_3$ on input x:\\
+Simulate $M_2$ on x, \\
+if $M_2$ accepts x, then reject;\\
+If $M_2$ rejects x, then simulate $M_1$ on x, if $M_1$ accepts x, then accept,  if $M_1$ rejects x, then reject\\
+
+By construction $L(M_3) = A\setminus A'$
+Since $M_1, M_2$ are decidable, we are guaranteed that $M_1, M_2$ will halt. So $M_3$ will halt. So $A\setminus A'$ is decidable.\\
+
+b.
+$A\setminus B$  is not even recognisable.\\
+We will show it by contradiction:\\
+Let $M_1$ be a Turing machine that decides A.\\ 
+For the sake of contradiction, suppose we have $M_3$ that recognise $A\setminus B$ .\\
+Then construct $M_2$ in the following way\\
+$M_2$ on input x:\\
+Simulate $M_1$ on x, if reject, then reject.\\
+If $M_1$ accept x, then simulate $M_3$ on x, if $M_3$ accept x, accept x.\\
+By construction $M_2$ will accept $\overline B$.\\
+
+Since both B and $\overline{B}$ are recognisable, we know that B is decidable (Contradiction)\\
+Therefore, our original assumption ($A\setminus B$  is recognisable) is False\\
+
+c.  $B\setminus A$ is recognisable but not decidable.\\
+Given A, B there exists $M_1, M_2$ such that $L(M_1) = A, L(M_2) = B'$.\\
+Construct $M_3$ in the following way\\
+$M_3$ on input x:\\
+Simulate $M_2$ on x, \\
+if $M_2$ rejects x, then reject;\\
+If $M_2$ accepts x, then simulate $M_1$ on x, if $M_1$ accepts x, then reject,  if $M_1$ rejects x, then accept\\
+
+By construction $L(M_3) = B\setminus A$
+Since $B$ is s recognisable but not decidable, It might loop when we simulate $M_2$ on x.So $M_3$ may not halt and $ B\setminus A$ is recognisable but not decidable.\\
+
+
+
+
+\end{document}
+
+

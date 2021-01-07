@@ -1,0 +1,211 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{epsfig}
+\usepackage{amsmath,amsthm}
+\usepackage{listings}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{forest}
+\usepackage{setspace}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{xfrac}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{courier}
+\usepackage{latexsym}
+\usepackage{lmodern}
+\usepackage{adjustbox}
+\usepackage{collectbox}
+\usepackage{makecell}
+\usepackage{longtable}
+\setstretch{1.0}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries}{Question~\thesection:}{1em}{}
+
+\newlength{\toppush}
+\setlength{\toppush}{2\headheight}
+\addtolength{\toppush}{\headsep}
+
+
+\def\subjnum{Comp 160}
+\def\subjname{Algorithms}
+
+
+\def\doheading#1#2#3{\vfill\eject\vspace*{-\toppush}%
+  \vbox{\hbox to\textwidth{{\bf} \subjnum: \subjname \hfil Erli Cai}%
+    \hbox to\textwidth{{\bf} Tufts University, Fall 2020 \hfil#3\strut}%
+    \hrule}}
+
+
+\newcommand{\htitle}[1]{\vspace*{1.25ex plus 1ex minus 0ex}%
+\begin{center}
+{\large\bf #1}
+\end{center}} 
+
+
+
+\begin{document}
+\doheading{2}{title}{Homework 10}
+
+
+\setlength\parindent{0pt}
+
+
+\section{10a}
+
+
+\begin{scriptsize}
+\begin{center}
+    \begin{longtable}{|| c | c | c | c | c | c ||}
+        \hline\hline
+        Problem & Input & Output & Algorithm & Runtime & Other Questions \\
+        \hline\hline
+%        \endhead
+
+
+        \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\Sorting}} & \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\Unsorted \\ Array}} & \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\Sorted \\ Array}} & Insertion Sort & $\theta(n^2)$ & \makecell{\:\\-\\\:} \\
+        \cline{4-6}
+        & \: & \: & Bubble Sort & $\theta(n^2)$& \makecell{\:\\-\\\:} \\
+        \cline{4-6}
+        & \: & \: & Mergesort & $\theta(nlogn)$ &T(n) = 2T(n/2) + $\theta(n)$ \\
+        \cline{4-6}
+        & \: & \: & Quicksort &$\theta(nlogn)$ & \makecell{Expect runtime: $\theta(nlogn)$, \\Worst runtime: $\theta(n^2)$} \\
+        \cline{4-6}
+        & \: & \: & Heapsort & $\theta(nlogn)$ & It is in-place (no extra memory needed) \\
+        \hline\hline
+
+        \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\\:\\Find \\ Minimum}} & \makecell{Unsorted \\ Array} & \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\\:\\Minimum \\ Value}} & \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\\:\\-}} &$\theta(n)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & Min-heap & \: & \: & $\theta(1)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & Max-heap & \: & \: &$\theta(n)$ & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & BST & \: & \: &  $\theta(height)$& worst case: $\theta (n)$\\
+        \cline{2-2}\cline{5-6}
+        & AVL Tree & \: & \: &$\theta(logn)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        \hline\hline
+
+        \multirow{5}{*}{\makecell{\:\\\:\\\:\\\:\\\:\\\:\\Find \textit{k}th \\ Smallest}} & \multirow{2}{*}{\makecell{\: \\Unsorted \\ Array}} & \multirow{5}{*}{\makecell{\:\\\:\\\:\\\:\\\:\\\:\\Element}} & Select & $\theta(n)$ & \makecell{worst case: $\theta (n)$} \\
+        \cline{4-6}
+        & \: & \: & \makecell{Randomized \\ Selection} & $\theta(n^2)$ & \makecell{expected runtime: $\theta(n)$\\ worst case runtime:$\theta(n^2)$} \\
+        \cline{2-2}\cline{4-6}
+        & Min-heap & \: & \multirow{4}{*}{\makecell{\:\\\:\\\:\\\:\\-\\\:\\\:\\\:\\\:\\}} & $\theta(klogn)$ & \makecell{\:\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & BST & \: & \: & $\theta(h+k)$ & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & AVL Tree & \: & \: & $\theta(h+k)$ & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & \makecell{AVL Tree \\ Augmented with \\ number of nodes\\ in left subtree} & \: & \: & $\theta(logn)$ & \makecell{\:\\-\\\:} \\
+        \hline\hline
+\pagebreak
+
+\hline\hline
+        Problem & Input & Output & Algorithm & Runtime & Other Questions \\
+        \hline\hline
+
+        \multirow{5}{*}{\makecell{\:\\\:\\\:\\\:\\\:\\Find rank \\ of element}} & \makecell{Unsorted \\ Array} & \multirow{5}{*}{\makecell{\:\\\:\\\:\\\:\\\:\\Integer \\ between \\ $1$ and $n$}} &  \makecell{Count the \\number of elements\\ less than target \\element in the array}  &$\theta(n)$ & - \\ \cline{2-2}\cline{4-6} %\hline
+%        \cline{2-2}\cline{4-6}
+
+        & Min-heap & \: & \multirow{4}{*}{\makecell{\:\\\:\\\:\\-}} & $\theta(n)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & BST & \: & \: & $\theta(n)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & AVL Tree & \: & \: & $\theta(n)$ & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & \makecell{AVL Tree \\ Augmented with \\ number of nodes\\ in left subtree} & \: & \: & $\theta(1)$ & \makecell{\:\\-\\\:} \\        \hline\hline
+        \multirow{2}{*}{\makecell{\:\\Sorting \\ Cont'd}} & \makecell{Unsorted array \\ of integers in \\ range $\{1\dotsc k\}$} & \multirow{2}{*}{\makecell{\:\\Sorted \\ Array}} & Counting sort & \underline{n+k} & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{4-6}
+        & \makecell{Unsorted array \\ of integers of \\ length $l$ \\ using $d$ digits} & \: &Radix sort &l(n+d) & \makecell{\:\\-\\\:} \\
+        \hline\hline
+
+        \makecell{Enumerate \\ how many \\ numbers are \\ in a given \\ interval} & \underline{answer28} & Integer & Range-Counting & \underline{answer29} & \makecell{\:\\-\\\:} \\
+        \hline\hline
+
+        \multirow{2}{*}{\makecell{\:\\MST}} &Undirected graph& \multirow{2}{*}{\makecell{\:\\Tree}} & Prim's Algorithm&$\theta(n+mlogn)$  & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{4-6}
+        & Undirected graph & \: &Kruskal's Algorithm & $\theta(n+m)$ & \makecell{\:\\-\\\:} \\
+        \hline
+        \multirow{3}{*}{\makecell{\:\\\:\\SSSP}} & \makecell{Unweighted \\ graph \\ + source s} & Tree & BFS & $\theta(mlogm+n)$ & \: \\
+        \cline{2-6}
+        &\makecell{Weighted \\ graph \\ + source s}& Tree &Bellman-Ford&  $\theta(mn)$ & \: \\
+        \cline{2-6}
+        & \makecell{Weighted \\ graph \\ + source s}& \makecell{Tree and \\ True/False} & Dijkstra &  $\theta(mlogm+n)$& \makecell{\:\\-\\\:} \\
+        \hline
+        \makecell{Finding \\ cut-vertices} & A graph & cut edges & \makecell{Hopcroft-Tarjan's\\algorithm} & $\theta(m+n)$ & \makecell{\:\\-\\\:} \\
+        \hline\hline
+    \end{longtable}
+\end{center}
+\end{scriptsize}
+\pagebreak
+
+\begin{normalsize}
+    \noindent Data Structures Comparsion - Fill out entire table with runtimes
+\end{normalsize}
+\begin{center}
+    \begin{tabular}{|| c | c | c | c | c ||}
+        \hline\hline
+        \: & \textbf{Insert} & \textbf{\makecell{Delete \\(pointer known)}} & \textbf{Search} & \textbf{\makecell{Preprocessing \\ (Build structure \\ from unsorted \\ array)}} \\
+        \hline\hline
+        \makecell{Unsorted \\ array} & $\theta(1)$ & $\theta(n)$ & $\theta(n)$ & $\theta(1)$\\
+        \hline
+        \makecell{Sorted \\ array} & $\theta(n)$ & $\theta(n)$& $\theta(logn)$& $\theta(nlogn)$ \\
+        \hline
+        BST & $\theta(height)$ &$\theta(height)$ & $\theta(height)$ &$\theta(nlogn)$ \\
+        \hline
+        AVL Tree & $\theta(logn)$ &$\theta(logn)$ &$\theta(logn)$& $\theta(nlogn)$ \\
+        \hline
+        \makecell{Hash table \\ w/ chaining, \\ array size m} & $\theta(1)$ & $\theta(1+\alpha)$ & $\theta(1+\alpha)$ & $\theta(n)$ \\
+        \hline
+        \makecell{Hash table \\ w/ uniform \\ open \\ addressing, \\ array size m} & $\theta((1-\alpha)^{-1})$ &$\theta((1-\alpha)^{-1})$ & $\theta((1-\alpha)^{-1})$ & $\theta(n)$\\
+        \hline\hline
+    \end{tabular}
+\end{center}
+
+
+
+
+
+\pagebreak
+\section{10b}
+
+
+3 .  A stable sorting algorithm will preserve the original order of elements with equal value.\\
+Merge sort, counting sort, radix sort are stable.\\
+
+4. It will still work if we group elements into groups of 3.\\
+But the runtime will no longer be linear. (It will probably have O(nlogn) runtime)\\
+
+
+5.  Let X = $\#$ times we see four 1's in a row.\\
+$X_i = 1$  if we ith to (i+3)-th digits are 1.\\
+
+$X = \Sigma^{i=13}_{i=1} X_i$\\
+
+$E[X_i] = P(X_i = 1) = \frac{1}{2}\times\frac{1}{2}\times\frac{1}{2}\times\frac{1}{2}$  = $\frac{1}{16}$\\
+$E[X] = 13 \times \frac{1}{16} = \frac{13}{16}$\\
+
+6. His strategy/statement about runtime is incorrect.\\
+Consider a decision tree for this problem.\\
+Each node will have 2 children. And there are $2^12$ cases in total.\\
+Therefore, the decision tree will have height = 12.\\
+The (worst-case) runtime of his algorithm is at least the height of decision tree, which is 12.\\
+So the algorithm will have a low bound 12. So his  strategy can't guarantee  to find the number with at most 10 questions.\\
+
+\end{document}
+
+

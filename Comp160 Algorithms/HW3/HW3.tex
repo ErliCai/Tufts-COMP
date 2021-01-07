@@ -1,0 +1,99 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{epsfig}
+\usepackage{amsmath,amsthm}
+\usepackage{listings}
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries}{Question~\thesection:}{1em}{}
+
+\newlength{\toppush}
+\setlength{\toppush}{2\headheight}
+\addtolength{\toppush}{\headsep}
+
+
+\def\subjnum{Comp 160}
+\def\subjname{Algorithms}
+
+
+\def\doheading#1#2#3{\vfill\eject\vspace*{-\toppush}%
+  \vbox{\hbox to\textwidth{{\bf} \subjnum: \subjname \hfil Erli Cai}%
+    \hbox to\textwidth{{\bf} Tufts University, Fall 2020 \hfil#3\strut}%
+    \hrule}}
+
+
+\newcommand{\htitle}[1]{\vspace*{1.25ex plus 1ex minus 0ex}%
+\begin{center}
+{\large\bf #1}
+\end{center}} 
+
+
+
+\begin{document}
+\doheading{2}{title}{Homework 03}
+\setlength{\parindent}{0pt}
+
+
+\section{}
+ We can't find an algorithm with better runtime\\
+
+Assume we have an algorithm A for this problem. Since this is a comparison based algorithm, we can consider the decision tree $T_A$ for this algorithm.\\
+Each comparison between a and b will have one of the three result, $a>b$, $a<b$ and $a=b$. Thus, each node in decision tree will have 3 children.\\
+And we know that there are n different possible outcomes\\
+Therefore, we will have a tree with height at least  $log_3n$\\
+
+In class, we have lemma stating that for any algorithm A, consider its decision tree representation $T_A$. The runtime of A is at least the height of $T_A$\\
+Therefore, the running time is $\Omega(log_3n)$. \\
+And in recitation, we have running time is $O(log_3n)$\\ 
+In conclusion, A has runtime $\theta(log_3n)$\\
+
+Therefore, we can't find an algorithm with better runtime
+
+\pagebreak
+
+\section{}
+Let X = number of update\\
+Let $X_i = 1$ when i then number in the list is the largest in first i numbers.\\
+In a list of size k, each number in the list has probability $1/k$ to be the largest in the list.\\
+Now suppose we have a list of length n. This applies to first k numbers in the list thus k-th number has $1/k$ probability to the largest up that number.\\
+Thus, there is $1/k$ probability to update on reading k-th number.\\
+Thus  $E(X_i) = \frac{1}{i}$\\
+Therefore, E(X) = $\Sigma_{i=1}^{i=n}\frac{1}{i}$\\
+And since $log_e{i+1}>\Sigma_{i=1}^{i=n}\frac{1}{i}>log_e{i}$, thus $E(X) = \Theta(\log i)$
+
+
+\pagebreak
+\section{}
+(a) Let X = number of battles will occur\\
+$X_i = 1$ if there is fight on island i\\
+Then $X = \Sigma X_i$ \\
+\begin{flalign*}
+E(X_i) &= P\mbox{(Two or more vikings on island i)}\\
+ &= 1- \mbox{ P(no viking on island i)} - \mbox{P(exactly 1 viking on island i)}\\
+ & = 1 - (\frac{n-1}{n})^k -\frac{k}{n}\times(\frac{n-1}{n})^{k-1}
+\end{flalign*}
+$E(X) = E(\Sigma_{i=1}^{i=n} X_i) = \Sigma_{i=1}^{i=n} E(X_i) = n \times ( 1 - (\frac{n-1}{n})^k - \frac{k}{n}\times(\frac{n-1}{n})^{k-1}) $\\
+
+(b) Let Y = number of islands visited by vikings\\
+In recitation we have $E(Y) = n (1-(\frac{n-1}{n})^k)$
+
+In case when there is only one island (k=1),\\  
+we have $E(X) =  n \times ( 1 -  (\frac{n-1}{n})^{1}-\frac{1}{n}\times(\frac{n-1}{n})^{1-1})) = 0$\\
+and $E(Y) = n\times (1-(\frac{n-1}{n})^1) = 1$\\
+
+In the case when there are 400 Vikings and 100 islands(n=100,k=400)\\
+$E(X) = 100 \times ( 1 -  (\frac{100-1}{100})^{400} - \frac{400}{100}\times (\frac{100-1}{100})^{400-1}) = 90.952 $\\
+$E(Y) = 100\times (1-(\frac{100-1}{100})^{400}) = 98.20$
+\end{document}
+
+

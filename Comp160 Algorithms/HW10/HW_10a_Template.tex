@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+% Homework Template File
+% Author: Matias Korman
+% Tufts University
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% This portion of the LaTeX document are configuration
+% You can see it as all the #includes in C++
+\documentclass[12pt]{article}
+
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{forest}
+\usepackage{setspace}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{xfrac}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{courier}
+\usepackage{latexsym}
+\usepackage{lmodern}
+\usepackage{adjustbox}
+\usepackage{collectbox}
+\usepackage{makecell}
+\usepackage{longtable}
+\setstretch{1.0}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries}{Question~\thesection:}{1em}{}
+
+\newlength{\toppush}
+\setlength{\toppush}{2\headheight}
+\addtolength{\toppush}{\headsep}
+
+\def\subjnum{COMP 160}
+\def\subjname{Algorithms}
+
+\def\doheading#1#2#3{\vfill\eject\vspace*{-\toppush}%
+  \vbox{\hbox to\textwidth{{\bf} \subjnum: \subjname \hfil Your Name}%
+    \hbox to\textwidth{{\bf} Tufts University, Your Semester \hfil#3\strut}%
+    \hrule}}
+
+\newcommand{\htitle}[1]{\vspace*{1.25ex plus 1ex minus 0ex}%
+\begin{center}
+{\large\bf #1}
+\end{center}}
+
+\makeatletter
+\newcommand{\ansbox}{%
+    \collectbox{%
+        \setlength{\fboxsep}{1pt}%
+        \fbox{\BOXCONTENT}%
+    }%
+}
+\makeatother
+\begin{document}
+\doheading{2}{title}{Homework 10, Part 1}
+\begin{center}
+    \textbf{COMP 160 Overview Part I: Chart of Problems \& Algorithms}
+\end{center}
+Homework 11 is graded on effort. For full credit fill in all \underline{underlined} cells and answer the ``Other Questions'' (Homework 10, Part 2). For this exercise we accept both handwritten or typed answers.
+\newline
+\begin{scriptsize}
+\begin{center}
+    \begin{longtable}{|| c | c | c | c | c | c ||}
+        \hline\hline
+        Problem & Input & Output & Algorithm & Runtime & Other Questions \\
+        \hline\hline
+%        \endhead
+
+
+        \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\Sorting}} & \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\Unsorted \\ Array}} & \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\Sorted \\ Array}} & Insertion Sort & $\theta(n^2)$ & \makecell{\:\\-\\\:} \\
+        \cline{4-6}
+        & \: & \: & Bubble Sort & $\theta(n^2)$& \makecell{\:\\-\\\:} \\
+        \cline{4-6}
+        & \: & \: & Mergesort & $\theta(nlogn)$ &T(n) = 2T(n/2) + $\theta(n)$ \\
+        \cline{4-6}
+        & \: & \: & Quicksort &$\theta(nlogn)$ & \makecell{Expect runtime: $\theta(nlogn)$, \\Worst runtime: $\theta(n^2)$} \\
+        \cline{4-6}
+        & \: & \: & Heapsort & $\theta(nlogn)$ & It is in-place (no extra memory needed) \\
+        \hline\hline
+
+        \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\\:\\Find \\ Minimum}} & \makecell{Unsorted \\ Array} & \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\\:\\Minimum \\ Value}} & \multirow{5}{*}{\makecell{\: \\ \: \\\: \\\:\\\:\\-}} &$\theta(n)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & Min-heap & \: & \: & $\theta(1)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & Max-heap & \: & \: &$\theta(n)$ & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & BST & \: & \: &  $\theta(height)$& worst case: $\theta (n)$\\
+        \cline{2-2}\cline{5-6}
+        & AVL Tree & \: & \: &$\theta(logn)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        \hline\hline
+
+        \multirow{5}{*}{\makecell{\:\\\:\\\:\\\:\\\:\\\:\\Find \textit{k}th \\ Smallest}} & \multirow{2}{*}{\makecell{\: \\Unsorted \\ Array}} & \multirow{5}{*}{\makecell{\:\\\:\\\:\\\:\\\:\\\:\\Element}} & Select & $\theta(n)$ & \makecell{worst case: $\theta (n)$} \\
+        \cline{4-6}
+        & \: & \: & \makecell{Randomized \\ Selection} & $\theta(n^2)$ & \makecell{expected runtime: $\theta(n)$\\ worst case runtime:$\theta(n^2)$} \\
+        \cline{2-2}\cline{4-6}
+        & Min-heap & \: & \multirow{4}{*}{\makecell{\:\\\:\\\:\\\:\\-\\\:\\\:\\\:\\\:\\}} & $\theta(klogn)$ & \makecell{\:\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & BST & \: & \: & $\theta(h+k)$ & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & AVL Tree & \: & \: & $\theta(h+k)$ & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & \makecell{AVL Tree \\ Augmented with \\ number of nodes\\ in left subtree} & \: & \: & $\theta(logn)$ & \makecell{\:\\-\\\:} \\
+        \hline\hline
+\pagebreak
+
+\hline\hline
+        Problem & Input & Output & Algorithm & Runtime & Other Questions \\
+        \hline\hline
+
+        \multirow{5}{*}{\makecell{\:\\\:\\\:\\\:\\\:\\Find rank \\ of element}} & \makecell{Unsorted \\ Array} & \multirow{5}{*}{\makecell{\:\\\:\\\:\\\:\\\:\\Integer \\ between \\ $1$ and $n$}} &  \makecell{Count the \\number of elements\\ less than target \\element in the array}  &$\theta(n)$ & - \\ \cline{2-2}\cline{4-6} %\hline
+%        \cline{2-2}\cline{4-6}
+
+        & Min-heap & \: & \multirow{4}{*}{\makecell{\:\\\:\\\:\\-}} & $\theta(n)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & BST & \: & \: & $\theta(n)$& \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & AVL Tree & \: & \: & $\theta(n)$ & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{5-6}
+        & \makecell{AVL Tree \\ Augmented with \\ number of nodes\\ in left subtree} & \: & \: & $\theta(1)$ & \makecell{\:\\-\\\:} \\        \hline\hline
+        \multirow{2}{*}{\makecell{\:\\Sorting \\ Cont'd}} & \makecell{Unsorted array \\ of integers in \\ range $\{1\dotsc k\}$} & \multirow{2}{*}{\makecell{\:\\Sorted \\ Array}} & Counting sort & \underline{n+k} & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{4-6}
+        & \makecell{Unsorted array \\ of integers of \\ length $l$ \\ using $d$ digits} & \: &Radix sort &l(n+d) & \makecell{\:\\-\\\:} \\
+        \hline\hline
+
+        \makecell{Enumerate \\ how many \\ numbers are \\ in a given \\ interval} & \underline{answer28} & Integer & Range-Counting & \underline{answer29} & \makecell{\:\\-\\\:} \\
+        \hline\hline
+
+        \multirow{2}{*}{\makecell{\:\\MST}} &Undirected graph& \multirow{2}{*}{\makecell{\:\\Tree}} & Prim's Algorithm&$\theta(n+mlogn)$  & \makecell{\:\\-\\\:} \\
+        \cline{2-2}\cline{4-6}
+        & Undirected graph & \: &Kruskal's Algorithm & $\theta(n+m)$ & \makecell{\:\\-\\\:} \\
+        \hline
+        \multirow{3}{*}{\makecell{\:\\\:\\SSSP}} & \makecell{Unweighted \\ graph \\ + source s} & Tree & BFS & $\theta(mlogm+n)$ & \: \\
+        \cline{2-6}
+        &\makecell{Weighted \\ graph \\ + source s}& Tree &Bellman-Ford&  $\theta(mn)$ & \: \\
+        \cline{2-6}
+        & \makecell{Weighted \\ graph \\ + source s}& \makecell{Tree and \\ True/False} & Dijkstra &  $\theta(mlogm+n)$& \makecell{\:\\-\\\:} \\
+        \hline
+        \makecell{Finding \\ cut-vertices} & A graph & cut edges & \makecell{Hopcroft-Tarjan's\\algorithm} & $\theta(m+n)$ & \makecell{\:\\-\\\:} \\
+        \hline\hline
+    \end{longtable}
+\end{center}
+\end{scriptsize}
+\pagebreak
+
+\begin{normalsize}
+    \noindent Data Structures Comparsion - Fill out entire table with runtimes
+\end{normalsize}
+\begin{center}
+    \begin{tabular}{|| c | c | c | c | c ||}
+        \hline\hline
+        \: & \textbf{Insert} & \textbf{\makecell{Delete \\(pointer known)}} & \textbf{Search} & \textbf{\makecell{Preprocessing \\ (Build structure \\ from unsorted \\ array)}} \\
+        \hline\hline
+        \makecell{Unsorted \\ array} & $\theta(1)$ & $\theta(n)$ & $\theta(n)$ & $\theta(1)$\\
+        \hline
+        \makecell{Sorted \\ array} & $\theta(n)$ & $\theta(n)$& $\theta(logn)$& $\theta(nlogn)$ \\
+        \hline
+        BST & $\theta(height)$ &$\theta(height)$ & $\theta(height)$ &$\theta(nlogn)$ \\
+        \hline
+        AVL Tree & $\theta(logn)$ &$\theta(logn)$ &$\theta(logn)$& $\theta(nlogn)$ \\
+        \hline
+        \makecell{Hash table \\ w/ chaining, \\ array size m} & $\theta(1)$ & $\theta(1+\alpha)$ & $\theta(1+\alpha)$ & $\theta(n)$ \\
+        \hline
+        \makecell{Hash table \\ w/ uniform \\ open \\ addressing, \\ array size m} & $\theta((1-\alpha)^{-1})$ &$\theta((1-\alpha)^{-1})$ & $\theta((1-\alpha)^{-1})$ & $\theta(n)$\\
+        \hline\hline
+    \end{tabular}
+\end{center}
+\end{document}

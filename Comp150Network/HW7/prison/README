@@ -1,0 +1,9 @@
+Originally available at http://vlado.fmf.uni-lj.si/pub/networks/data/Ucinet/UciData.htm#prison
+
+DESCRIPTION One 67×67 matrix, non-symmetric, binary.
+
+BACKGROUND In the 1950s John Gagnon collected sociometric choice data from 67 prison inmates. All were asked, "What fellows on the tier are you closest friends with?" Each was free to choose as few or as many "friends" as he desired. The data were analyzed by MacRae and characterized by him as "less clear cut" in their internal structure than similar data from schools or residential populations.
+
+REFERENCE
+
+MacRae J. (1960). Direct factor analysis of sociometric data. Sociometry, 23, 360-371.

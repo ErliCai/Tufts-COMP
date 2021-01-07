@@ -1,0 +1,110 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{epsfig}
+\usepackage{amsmath,amsthm}
+\usepackage{listings}
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries}{Question~\thesection:}{1em}{}
+
+\newlength{\toppush}
+\setlength{\toppush}{2\headheight}
+\addtolength{\toppush}{\headsep}
+
+
+\def\subjnum{Comp 170}
+\def\subjname{Computation Theory}
+
+
+\def\doheading#1#2#3{\vfill\eject\vspace*{-\toppush}%
+  \vbox{\hbox to\textwidth{{\bf} \subjnum: \subjname \hfil Erli Cai}%
+    \hbox to\textwidth{{\bf} Tufts University, Fall 2020 \hfil#3\strut}%
+    \hrule}}
+
+
+\newcommand{\htitle}[1]{\vspace*{1.25ex plus 1ex minus 0ex}%
+\begin{center}
+{\large\bf #1}
+\end{center}} 
+
+
+
+\begin{document}
+\doheading{2}{title}{Homework 03}
+
+
+\section{Getting Closure}
+\setlength\parindent{0pt}
+
+
+In lecture, we have shown that $A = \{a^n b^b | n \ge 0\}$ is not a regular language.\\
+Now, I will show the following language are not regular based on this and the closure property of regular language.\\
+
+(i)  $A_1 = \{  a^nb^{n+1000} | n \ge 0    \}$\\
+Let $B_1 = \{  a^{1000} | n \ge 0    \}$, it's easy to see that $B_1$ is a regular language.(since it's finite)\\
+$A_1 \circ B_1 = A$ is not regular, therefore $A_1$ is not regular.\\
+
+(ii) $A_2 = \{ a^{2n+1}b^{2n+1} | n \ge 0\}$\\
+Let $B_2 = \{a \}$ $B_3 = \{b \}$. Since $B_2$ and $B_3$ are finite, we know they are regular language.\\
+If $A_2$ is regular, then so will be $A_2 \cup (B_2 \circ A_2 \circ B_2) =  A$ due to closure of regular language.\\
+Since A is not regular, we know that $A_2$ is not regular.\\
+
+(iii) $A_3 = \{a^nb^mc^k | m,n,k \ge 0$ and $n+m = k \}$\\
+Let $B_4$ = $\{$ strings with less than or equal to 2 different characters $\}$ \\
+Clearly, $B_4$ is a regular language.\\
+$ A_3 \cap B_4 = A$ , therefore $A_3$ is not regular.
+
+
+
+\pagebreak
+
+\section{Pump It Up}
+(i) $B_1 = \{  a^{2^n}   | n\ge 0 \}$\\
+
+For all $p > 0 $, choose  let $w = a^{2^{N}}$ where $N = \lceil  log_2p   \rceil +1$ \\
+Since we have to divide this string into three pieces xyz, with $|y| > 0$ and $|xy| \le p$.
+We must have $ 2^N > p \ge |y| > 0$.\\
+If we pump y twice we will get $a^{2^{N} + p  }$ which is not in $B_1$. Thus $B_1$ is not regular.\\
+
+(ii)  $B_2 = \{  a^nb^m $  $ | $ $n,m\ge 0 $ and m is a multiple of n $ \}$\\
+
+For all $p>0$ choose $w = a^pb^{kp}$ where k is an positive integer.
+Since we have to divide this string into three pieces xyz, with $|y| > 0$ and $|xy| \le p$.
+We have $y = a^n$ with $n\le p$\\
+we pump it (k+1)p times, we get $a^{p+(k+1)pn} $ which is not in $B_2$.
+
+
+
+\pagebreak{regular expressions}
+
+(i) $  (aa\cup a \cup \epsilon)(b \cup ba \cup baa)^* $\\
+
+(ii)$   ((aa \cup bb)^* \cup (ab\cup ba) (aa \cup bb)^*(ab\cup ba))^*    $\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+

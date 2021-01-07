@@ -1,0 +1,194 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{epsfig}
+\usepackage{amsmath,amsthm}
+\usepackage{listings}
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries}{Question~\thesection:}{1em}{}
+
+\newlength{\toppush}
+\setlength{\toppush}{2\headheight}
+\addtolength{\toppush}{\headsep}
+
+
+\def\subjnum{Comp 170}
+\def\subjname{Computation Theory}
+
+
+\def\doheading#1#2#3{\vfill\eject\vspace*{-\toppush}%
+  \vbox{\hbox to\textwidth{{\bf} \subjnum: \subjname \hfil Erli Cai}%
+    \hbox to\textwidth{{\bf} Tufts University, Fall 2020 \hfil#3\strut}%
+    \hrule}}
+
+
+\newcommand{\htitle}[1]{\vspace*{1.25ex plus 1ex minus 0ex}%
+\begin{center}
+{\large\bf #1}
+\end{center}} 
+
+
+
+\begin{document}
+\doheading{2}{title}{Homework 07}
+
+\setlength\parindent{0pt}
+
+
+\section{Out of Context}
+a.
+$S \rightarrow
+\begin{bmatrix}
+b\\
+b\\
+q_s
+\end{bmatrix}
+\begin{bmatrix}
+\$\\
+\$\\
+\quad
+\end{bmatrix}$, \quad
+$\begin{bmatrix}
+b\\
+b\\
+q_s
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+b\\
+b\\
+q_s
+\end{bmatrix}
+\begin{bmatrix}
+a\\
+a\\
+\quad
+\end{bmatrix}
+$
+for all $a, b\in \Sigma$\\
+
+b. Now we try to simulate M ( based on $\delta: Q \times \Gamma \rightarrow Q \times \Gamma\times\{L.R\}$)\\
+if we have $\delta(q,A) = (p,B,L)$,then we add in our production rule:\\
+$
+\begin{bmatrix}
+c\\
+C\\
+\quad
+\end{bmatrix}
+\begin{bmatrix}
+a\\
+A\\
+q
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+c\\
+C\\
+p
+\end{bmatrix}
+\begin{bmatrix}
+a\\
+B\\
+\quad
+\end{bmatrix}
+$
+for all $c,C \in \Gamma$
+
+if we have $\delta(q,A) = (p,B,L)$,then we add in our production rule:\\
+$
+\begin{bmatrix}
+a\\
+A\\
+q
+\end{bmatrix}
+\begin{bmatrix}
+c\\
+C\\
+\quad
+\end{bmatrix}
+\rightarrow
+\begin{bmatrix}
+a\\
+B\\
+\quad
+\end{bmatrix}
+\begin{bmatrix}
+c\\
+C\\
+p
+\end{bmatrix}
+$
+for all $c,C \in \Gamma$\\
+
+c.
+$
+\begin{bmatrix}
+n\\
+N\\
+\quad
+\end{bmatrix}......
+\begin{bmatrix}
+a\\
+A\\
+\quad
+\end{bmatrix}
+\begin{bmatrix}
+b\\
+B\\
+q_{accept}
+\end{bmatrix}
+\begin{bmatrix}
+c\\
+C\\
+\quad
+\end{bmatrix}......
+\begin{bmatrix}
+z\\
+Z\\
+\quad
+\end{bmatrix}
+\rightarrow n....abc....z
+$
+This is the only production rule that doesn't generate non-terminate, so grammar produce a string x if and only if M reaches accepted state
+
+\pagebreak
+\section{Tough Decisions}
+a.Given DFA D, $ \{<D> |$ L(D) is finite$\}$ is decidable.\\
+Suppose D has n states, TM search for all the path of n+1 steps. If any state can be visited repeatedly is one path, then mark that state. If in any path, any accepted state is reached passing through a marked state, then we reject. Else, accept.\\
+
+b. This is recognisable but not decidable. Recognisable because, we can simulate M on all possible strings and accept if any halt.\\ It is not decidable. Because if it is decidable we know when TM never halts and then $\{<M,x>| M is Turing machine, and M accept x\}$ would be decidable (which we have shown in class is not decidable).\\
+
+c. This is not recognisable. Since M could loop on x, we never know if it will read all of x, so not recognisable.
+
+
+
+
+
+\pagebreak
+\section{Closure Properties}
+a. This won't work. Suppose $M_A$ loops on x, while $M_B$ accepts x.  since $M_A$ loops on x, we never get to step 2. So the TM never halts while it should accept x.\\
+We could build the Turing machine do the following, Alternate simulate $M_A, M_B$ on x, if one of them accept, then accept.\\
+
+b. This will work. Since both machines ($T_A,T_B$) need to halt and accept x for x to be accepted by our new machine. If either machine loops or rejects, the new machine won't accept.
+
+
+
+
+
+
+
+
+
+\end{document}
+
+

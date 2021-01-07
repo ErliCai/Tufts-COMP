@@ -1,0 +1,121 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\usepackage{epsfig}
+\usepackage{amsmath,amsthm}
+\usepackage{listings}
+
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+
+
+\usepackage{titlesec}
+\titleformat{\section}
+{\normalfont\Large\bfseries}{Question~\thesection:}{1em}{}
+
+\newlength{\toppush}
+\setlength{\toppush}{2\headheight}
+\addtolength{\toppush}{\headsep}
+
+
+\def\subjnum{Comp 170}
+\def\subjname{Computation Theory}
+
+
+\def\doheading#1#2#3{\vfill\eject\vspace*{-\toppush}%
+  \vbox{\hbox to\textwidth{{\bf} \subjnum: \subjname \hfil Erli Cai}%
+    \hbox to\textwidth{{\bf} Tufts University, Fall 2020 \hfil#3\strut}%
+    \hrule}}
+
+
+\newcommand{\htitle}[1]{\vspace*{1.25ex plus 1ex minus 0ex}%
+\begin{center}
+{\large\bf #1}
+\end{center}} 
+
+\setlength\parindent{0pt}
+
+
+\begin{document}
+\doheading{2}{title}{Homework 09}
+
+
+\section{Really Independent}
+
+Assume $|V| = n, |E| = m$. Then each node will have degree less than or equal to n\\
+
+a. Given any set $S \in V$ , our verifier will first check that S indeed contains at least k vertices (in O(k) time).\\
+ Then for each node it checks that all nodes that is within 2 edge distance is not in S. This will take $O(n^2) $ time for each node since each node has at most (n-1) neighbors. So it is $O(kn^2)$ time in total.\\
+Since we know $k<n$, total runtime is $O(n^3)$ (polytime)\\
+ 
+  For a yes instance (G, k), our certificate is any really independent set S of size k in G; our verifier will accept (G, k, S). Conversely, if S $\subseteq$ V is such that our verifier accepts (G,k,S) then S is a really independent set of size $\ge$ k in G and (G, k) is a yes instance.\\
+
+
+b. we now want to show that IS $\le_P$ RIS.\\
+Given an instance of IS $(G, k)$, we construct an instance $(G', k')$ of the Really Independent Set problem as follows.\\
+If $G = (V,E)$, assume $V = \{v_1, v_2,..., v_{n}\}$, $E = \{e_1, e_2,..., e_{m}\}$\\
+
+then construct $G' = (V', E')$ with\\
+$V' = V \cup \{ w_1, w_2, ...,  w_m    \}$\\
+$E' = E \cup \{aw_i, w_ib | ab = e_i \in E  \} \cup \{w_iw_j | i \ne j $ and $i,j \le m\}$\\
+Put in words, what we do here is add a node at the middle of each edge in graph G and connecting all these nodes.\\
+
+We now run our black box for Really Independent Set on $(G',k)$ and return the same result it gives.\\
+
+Claim that if there is independent set of size k in G, then there is really independent set of size k in G.\\
+
+proof: Assume S is independent set of size k in G. Then every node in S is separated  by at least 2 edges. If we take corresponding nodes in $G'$, every nodes will be separated by at least 4 edges. So S is also a really independent set of size k in $G'$\\
+
+Claim that if  there is really independent set of size k in G, then there is independent set of size k in G\\
+
+Proof: Assume S is really independent set of size k in $G'$. Then since all nodes $w_i, w_j$ are neighbors, they can't be separated by 2 edges. Therefore, all nodes in S must be nodes in V. And since nodes in S are separated by 2 edges in  $G'$, they can not be adjacent nodes in $G$. Thus S is also an independent set in G.\\
+
+Runtime: We are adding in the graph G $|E|$ nodes and  $|E| + |E|^2$ edges. Since we know that $|E| < |V|^2 = n^2$, we know that this algorithm will run in $O(n^4)$ time.\\
+
+In conclusion, we have shown that IS $\le_P$ RIS
+
+\pagebreak
+
+
+\section{Four: Slightly Bigger Than Three}
+
+4-SAT = $\{\langle\phi = C_1 \wedge C_2 \wedge ... \wedge C_n \rangle | C_i = (t_{i1} \vee t_{i2} \vee t_{i3} \vee t_{i4}  ), t_{ij} \in \{x_1,x_2...,x_k,\overline{x_1},...,\overline{x_k}\}\}$\\
+
+First, We will show that 4-SAT is NP.\\
+Our certificate will be satisfying assignments A for $\phi$. Given A and $\phi$, our verifier will check the truth condition of each clause in $\phi$ and accept only if all clauses are evaluated TRUE. Doing this is in time proportional to the size of $\phi$ (O(n) time). Conversely if A is a certificate accepted by our verifier, then we know that A is an assignment for $\phi$.\\
+Thus we have shown that $\phi$ is in 4-SAT if and only if there exist a certificate (A) such that our verifier accepts A, $\phi$.\\
+
+
+We now show that 3-SAT $<_p$ 4-SAT.\\
+
+For any $\varphi = D_1 \wedge D_2 \wedge ... \wedge D_n$, input to 3-SAT:\\
+1. Introduce a new variable y and Generate new formula:\\
+$\phi = (D_1 \vee y) \wedge (D_1 \vee \overline{y}) \wedge(D_2 \vee y) \wedge (D_2 \vee \overline{y}) \wedge ... \wedge (D_n \vee y) \wedge (D_n \vee \overline{y}) $ \\
+$\phantom{1}$ = $C_{11} \wedge C_{12} \wedge C_{21} \wedge C_{22} \wedge ... \wedge C_{n1} \wedge C_{n2}$\\
+where $C_{i1} = D_i \vee y$ and $C_{i2} = D_i \vee \overline{y}$\\
+2. We now run our black box for 4-SAT on $\phi$ and return the same result it gives. (This construction is poly-size and poly-time because $\phi$ has O(n) clauses.)\\
+
+
+To finish the proof, we simply need to show that $\varphi \in $ 3-SAT  $ \Longleftrightarrow \phi \in $ 4-SAT:
+$\varphi \in $ 3-SAT  $\Rightarrow D_i $ is TRUE for all i\\
+$\phantom{1234567891} \Rightarrow  (D_i \vee y) $ and $(D_i \vee \overline{y}) $ are TRUE for all i\\
+$\phantom{1234567891} \Rightarrow  C_{ij} $ is TRUE for all ij\\
+$\phantom{1234567891} \Rightarrow \phi \in $ 4-SAT\\
+
+$\phi \in $ 4-SAT  $\Rightarrow C_{ij} $ is TRUE for all i\\
+$\phantom{1234567891} \Rightarrow  (D_i \vee y) $ and $(D_i \vee \overline{y}) $ are TRUE for all i\\
+$\phantom{1234567891} \Rightarrow  D_{i} $ is TRUE for all i since $y$ and $\overline{y}$ can't be True simultaneously\\
+$\phantom{1234567891} \Rightarrow \varphi \in $ 3-SAT
+
+
+
+
+
+
+\end{document}
+
+
