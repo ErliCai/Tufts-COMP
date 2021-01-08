@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea104f33-703d-4f68-8040-9b5c9f2620a8" name="Default Changelist" comment="" />
+    <list default="true" id="ea104f33-703d-4f68-8040-9b5c9f2620a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Reversi/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Reversi/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Reversi/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Reversi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Reversi/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +22,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="ProjectId" id="1jkxQPYilnNnKczNWyIFn8iUDEC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
   </component>
   <component name="RecentsManager">
@@ -41,7 +50,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.reversi">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="HW3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="reversi" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="HW3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -86,8 +116,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.reversi" />
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.reversi" />
       </list>
     </recent_temporary>
   </component>
@@ -103,5 +134,16 @@
       <updated>1604361873584</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
