@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea104f33-703d-4f68-8040-9b5c9f2620a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Reversi/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Reversi/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Reversi/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Reversi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Reversi/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +28,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -140,7 +139,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
